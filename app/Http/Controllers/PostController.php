@@ -15,40 +15,40 @@ class PostController extends Controller
     }
 
     public function show($id){
-        $post = Post::find($id);
-        if(!$post){
+        $Post = Post::find($id);
+        if(!$Post){
             return response() -> json(["message" => "failed"], 404);
         }
-        return $post;
+        return $Post;
     }
 
     public function store(Request $request){
-        $post = new Post;
-        $r = $post -> fill($request -> all()) -> save();
+        $Post = new Post;
+        $r = $Post -> fill($request -> all()) -> save();
         if(!$r){
             return response() -> json(["message" => "failed"], 404);
         }
-        return $post;
+        return $Post;
     }
 
     public function update(Request $request, $id){
-        $post = Post::find($id);
-        if(!$post){
+        $Post = Post::find($id);
+        if(!$Post){
             return response() -> json(["message" => "failed"], 404);
         }
-        $r = $post -> fill($request -> all()) -> save();
+        $r = $Post -> fill($request -> all()) -> save();
         if(!$r){
             return response() -> json(["message" => "failed"], 404);
         }
-        return $post;
+        return $Post;
     }
 
     public function destroy($id){
-        $post = Post::find($id);
-        if(!$post){
+        $Post = Post::find($id);
+        if(!$Post){
             return response() -> json(["message" => "failed"], 404);
         }
-        $post -> delete();
+        $Post -> delete();
         return response() -> json(["message" => "success"], 404);
     }
 
