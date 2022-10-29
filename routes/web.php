@@ -1,5 +1,7 @@
 <?php
 
+//Gustavo Alonso Pascual Andrade
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 $router -> get('/login', 'AuthController@login');
@@ -11,7 +13,7 @@ $router->get('/', function () use ($router) {
 function resource($router, $url, $model){
     $router->get($url, $model.'Controller@index');
     $router->get($url.'/{id}', $model.'Controller@show');
-    $router->post($url, '$model.TController@store');
+    $router->post($url, $model.'Controller@store');
     $router->put($url.'/{id}', $model.'Controller@update');
     $router->delete($url.'/{id}', $model.'Controller@destroy');
 }

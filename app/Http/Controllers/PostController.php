@@ -1,55 +1,54 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
 
+//use App\Models\Post;
 use App\Models\Post;
-use Illuminate\Http\Request; //
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     public function index(){
         return Post::paginate();
         //return DB::table('Posts')->select("title");
     }
 
     public function show($id){
-        $Post = Post::find($id);
-        if(!$Post){
-            return response() -> json(["message" => "failed"], 404);
+        $post = Post::find($id);
+        if(!$post){
+            return response()->json(["message"=>"failed"], 404);
         }
-        return $Post;
+        return $post;
     }
 
     public function store(Request $request){
-        $Post = new Post;
-        $r = $Post -> fill($request -> all()) -> save();
+        $post = new Post;
+        $r = $post->fill($request->all())->save();
         if(!$r){
-            return response() -> json(["message" => "failed"], 404);
+            return response()->json(["message"=>"failed"], 404);
         }
-        return $Post;
+        return $post;
     }
 
     public function update(Request $request, $id){
-        $Post = Post::find($id);
-        if(!$Post){
-            return response() -> json(["message" => "failed"], 404);
+        $post = Post::find($id);
+        if(!$post){
+            return response()->json(["message"=>"failed"], 404);
         }
-        $r = $Post -> fill($request -> all()) -> save();
+        $r = $post->fill($request->all())->save();
         if(!$r){
-            return response() -> json(["message" => "failed"], 404);
+            return response()->json(["message"=>"failed"], 404);
         }
-        return $Post;
+        return $post;
     }
 
-    public function destroy($id){
-        $Post = Post::find($id);
-        if(!$Post){
-            return response() -> json(["message" => "failed"], 404);
+    public function destroy ($id){
+        $post = Post::find($id);
+        if(!$post){
+            return response()->json(["message"=>"failed"], 404);
         }
-        $Post -> delete();
-        return response() -> json(["message" => "success"], 404);
+        $post->delete();
+        return response()->json(["message"=>"success"]);
     }
-
 }
